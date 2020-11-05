@@ -1,13 +1,13 @@
 package week.one;
 
-public class Day3Coding {
+public class IndicesofTwoNumbers {
 
 		// TODO Auto-generated method stub
 		
 		public static void main(String[] args) {
 
-			int []nums= {-1,7,11,15};
-		    int target =6;
+			int []nums= {-1,7,11,15,5,3,1,8};
+		    int target =8;
 				for (int i=0;i<nums.length;i++) 
 				{
 					for (int j=1+i;j<nums.length;j++) 
