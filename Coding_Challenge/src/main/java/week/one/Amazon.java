@@ -27,7 +27,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Amazon {
 
-	public static <CultureInfo> void main(String[] args) throws InterruptedException {
+	public static  void main(String[] args) throws InterruptedException {
 		// Lunch  Chrome 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-notifications");
@@ -41,6 +41,7 @@ public class Amazon {
 		driver.get("https://www.amazon.in/");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		System.out.println("Search for costliest furniture");
+		
 		// Click Choose and Select Furniture
 		driver.findElement(By.id("searchDropdownBox")).click();
 
@@ -53,6 +54,8 @@ public class Amazon {
 		// Type 'chairs for computer table' and Enter
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("chairs for computer table",Keys.ENTER);
 
+		//Find the highest price of the chairs in the first page alone (DO NOT USE SORT BY PRICE option in the amazon website)
+
 		List<WebElement> price = driver.findElements(By.xpath("(//span[text()='Sponsored'])[2]/following::span[@class='a-price']"));
 
 		List<Integer> aNum = new ArrayList<Integer>();
@@ -62,16 +65,15 @@ public class Amazon {
 			aNum.add(namesorted);
 			Collections.sort(aNum);
 			Collections.reverse(aNum);
-
 		}
 		Integer costilestnum=aNum.get(0);
-		System.out.println("Num costliest  "+costilestnum);
-		
+		System.out.println("The costliest chair price ₹"+costilestnum);
+
 		Format df = new DecimalFormat("##,##,000");
 		String formattedString = df.format(costilestnum);
-		System.out.println(formattedString);
 		
- 		driver.findElement(By.xpath("//span[text()='"+formattedString+"']/preceding::i[2]")).click();
+		//Print the number of 5% ratings and that will be 36% of 1521 = 548
+		driver.findElement(By.xpath("//span[text()='"+formattedString+"']/preceding::i[2]")).click();
 		String globalRatings = driver.findElement(By.xpath("//span[contains(text(),'global ratings')]")).getText();
 		System.out.println(globalRatings+" for the costilest Furniture ");
 		String globalRatingsText=globalRatings.replaceAll("[^0-9]", "");
@@ -83,7 +85,7 @@ public class Amazon {
 		int percenatageNum =Integer.parseInt(percenatageText);
 		int cal=globalRatingsNum*percenatageNum/100;
 		System.out.println("The costliest the Furniture "+stars+"* rating is "+percenatageNum+ "% of " +globalRatingsNum+"= "+cal);
-        Thread.sleep(5000);
-        driver.close();
+		Thread.sleep(5000);
+		driver.close();
 	}
 }
