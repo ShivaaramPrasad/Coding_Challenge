@@ -19,7 +19,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class redbus {
+public class Redbus {
 	public static  RemoteWebDriver driver;
 
 	public static void main(String[] args) throws InterruptedException {
