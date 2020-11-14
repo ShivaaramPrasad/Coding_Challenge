@@ -45,29 +45,24 @@ public class Myntra {
 		js.executeScript("window.scrollBy(0,350)", "");
 		Thread.sleep(5000);
 
-		/*WebElement firstProduct = driver.findElement(By.xpath("(//img[@class='img-responsive'])[1]"));
+		WebElement firstProduct = driver.findElement(By.xpath("(//img[@class='img-responsive'])[1]"));
 		Actions actionProvider = new Actions(driver);
 		// Performs mouse move action onto the element
 		actionProvider.moveToElement(firstProduct).build().perform();
 		String text = driver.findElement(By.xpath("//h4[text()='Sizes: ']")).getText();
 		String[] sizes=text.split(" ");
-		System.out.println("The product of the size of the Mens Rectangular Sunglass is "+sizes[1]);*/
-		List<WebElement> eleMenRecGlass = driver.findElementsByXPath("//ul[@class='results-base']/li//descendant::a[contains(@href,'polaroid-men-rectangle')]");
-		System.out.println("Total no of Polaroid Mens Rectangle Glasses is: "+eleMenRecGlass.size());
-		System.out.println(" Size of the Glasses are below:");
-		for (int i = 1; i <= eleMenRecGlass.size(); i++) {
-			System.out.println(js.executeScript("return arguments[0].innerHTML;", driver.findElementByXPath("(//ul[@class='results-base']/li//descendant::a[contains(@href,'polaroid-men-rectangle')]//descendant::h4[@class='product-sizes'])["+i+"]/span")).toString());
-		}
+		System.out.println("The product of the size of the Mens Rectangular Sunglass is "+sizes[1]);
 
 		WebElement viewSimilar = driver.findElement(By.xpath("//span[contains(@class,'myntraweb-sprite image-grid-similarColorsIcon')]"));
 		Actions actionProvider1 = new Actions(driver);
 		// Performs mouse move action onto the element
 		actionProvider1.moveToElement(viewSimilar).build().perform();
 		driver.findElement(By.xpath("//span[text()='VIEW SIMILAR']")).click();
+		Thread.sleep(5000);
 		List<WebElement> similarProduct = driver.findElements(By.xpath("//div[text()='Similar Products']/following::h4"));
 		int NumSimPro=similarProduct.size();
 		System.out.println("Number of Simailar Product "+NumSimPro);
-		driver.close();
+		//driver.close();
 	}		
 
 }
